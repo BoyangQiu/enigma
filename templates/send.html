@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <style>
+    .btnStack {
+    font-family: Roboto, Arial, sans-serif;
+    background-color: #cc7a00;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    }
+    .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    }
+    .left {
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+    width: 50%;
+    }
+  }
+    </style>
+
+        
+
+    <body>
+        <div style = 'text-align: top left;'>
+            <a href="//localhost:5000/" class="btnStack">Back to Home</a>
+        </div>
+        <h1 style="text-align:center">{{ playername }}</h1>
+        <h2 style="text-align:center">{{ years }}</h1>
+        {% if static == True %}
+            <div class = "left">
+                <img src = "static/plots/{{ file }}">
+            </div>
+        {% else %}
+            <div class = "center">
+                <img src = "static/plots/{{ file }}">
+            </div>
+        {% endif %}  
+    </body>
+</html>
