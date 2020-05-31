@@ -4,6 +4,8 @@ The scope of the Capstone project is to visualize a pitcher's development over t
 pitcher will throw during a specific scenario.
 
 **Currently a work in progress**
+As such, many of the Notebooks are very messy and unordered.
+
 
 If running from local machine, the order of files to run are:
 
