@@ -7,7 +7,5 @@ pitcher will throw during a specific scenario.
 
 If running from local machine, the order of files to run are:
 
-1. ScrapingFangraphs.ipynb
-2. datawrangling.ipynb
-3. Data Processing.ipynb
-4. flask.py
+1. Final.ipynb
+2. Flask.py
