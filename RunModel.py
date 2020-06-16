@@ -124,19 +124,19 @@ def run_model(name, user_input, now):
     # Convert the array of integers into the pitch names using nested np.where functions
     # For 2 pitch pitchers
     if len(xnames) == 2:
-    pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
-                            np.where(pred_pitch == 1, xnames.values[1], pred_pitch))
-    # For 3 pitch pitchers:
-    elif len(xnames) == 3: 
-    pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
-                            np.where(pred_pitch == 1, xnames.values[1], 
-                                     np.where(pred_pitch == 2, xnames.values[2], pred_pitch)))
-    # For 4 pitch pitchers:  
-    elif len(xnames) == 4:
-    pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
-                            np.where(pred_pitch == 1, xnames.values[1], 
-                                     np.where(pred_pitch == 2, xnames.values[2], 
-                                              np.where(pred_pitch == 3, xnames.values[3], pred_pitch))))
+        pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
+                                np.where(pred_pitch == 1, xnames.values[1], pred_pitch))
+        # For 3 pitch pitchers:
+        elif len(xnames) == 3: 
+        pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
+                                np.where(pred_pitch == 1, xnames.values[1], 
+                                        np.where(pred_pitch == 2, xnames.values[2], pred_pitch)))
+        # For 4 pitch pitchers:  
+        elif len(xnames) == 4:
+        pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
+                                np.where(pred_pitch == 1, xnames.values[1], 
+                                        np.where(pred_pitch == 2, xnames.values[2], 
+                                                np.where(pred_pitch == 3, xnames.values[3], pred_pitch))))
                                  
     # Pred proba returns an array of lists, need to get just the first list of values
     # Set a color list of all light grey which is same length as number of bars
