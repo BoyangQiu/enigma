@@ -1,6 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 import time
 import pandas as pd
+import numpy as np
 # Import my custom scripts
 import Animation
 import prime
@@ -66,6 +67,7 @@ def send():
             df['s__1'] = 1
         else:
             df['s__2'] = 1
+
         # If statements for balls
         if balls == 0:
             df['b__0'] = 1
@@ -75,6 +77,7 @@ def send():
             df['b__2'] = 1
         else:
             df['b__3'] = 1
+
         # If statements for outs
         if outs == 0:
             df['o__0'] = 1
@@ -82,6 +85,7 @@ def send():
             df['o__1'] = 1
         else:
             df['o__2'] = 1
+            
         # If statements for innings
         if inning < 4:
             df['early'] = 1
@@ -89,17 +93,28 @@ def send():
             df['mid'] = 1
         elif inning > 6:
             df['late'] = 1
+
         # If statements for batter handedness
         if bat == 'right':
             df['bat_right'] = 1
         elif bat == 'left':
             df['bat_left'] = 1
+
         # If statements for game type
         if game == 'reg':
             df['reg_season'] = 1
         elif game == "post":
             df['post_season'] = 1
+
         # If statements for previous pitch
+        # Conditional only for Zack Greinke since he's the only one with 'junk' pitches
+        # Its 'proper' place is before the 'prev__None' columns
+        if name == 'Zack Greinke':
+            # argwhere creates an array of arrays, fish out the number through indexing to get rid of layers
+            # Need to make sure to turn to int instead of np.int for the pd.insert function
+            loc = int(np.argwhere(df.columns == 'prev__None')[0][0])
+            df.insert(loc, 'prev__Junk', 0)
+        
         if prev == 'fb':
             df['prev__Fastball'] = 1
         elif prev == 'bb':
@@ -108,8 +123,9 @@ def send():
             df['prev__Off-speed'] = 1
         elif prev == "jk":
             df['prev__Junk'] = 1
+
         # If statements for runners
-        # Want to consider all options so make 3 different if clauses rather than elif clauses (terminate if clause once one meets)
+        # Want to consider all options so make 3 different if clauses rather than elif clauses (terminate if clause once one equals True)
         # Default is all zeroes (ie. no runners on), so no need to include that into the clause
         if r1 == 'first':
             df['on_1b'] = 1
