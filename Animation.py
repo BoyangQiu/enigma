@@ -132,7 +132,7 @@ def dynamic(name, now):
         plt.rc('axes', linewidth=1, edgecolor="black", facecolor = "white")
 
         # Create polar plot
-        fig, ax = plt.subplots(figsize=(6,6), sharex = True, sharey= True, subplot_kw = dict(projection='radar'))
+        fig, ax = plt.subplots(figsize=(5,5), sharex = True, sharey= True, subplot_kw = dict(projection='radar'))
         #ax = ax.flat
 
         # Set axis limits
@@ -192,7 +192,7 @@ def dynamic(name, now):
                 ax.text(angle_rad, 100 + distance_ax, x[i], size=10, horizontalalignment=ha, verticalalignment="center")
             
             # Celluloid can't animate title frame by frame, so use the insert text function instead
-            ax.text(0.5, 1.1, f'Age: {plotdf1.loc[j, "Age"]}, WAR: {plotdf1.loc[j, "WAR"]}', size = 16, transform=ax.transAxes,
+            ax.text(0.5, 1.12, f'Season Attribute Percentile (Age: {plotdf1.loc[j, "Age"]})', size = 13, transform=ax.transAxes,
                     horizontalalignment='center', verticalalignment="center")
             camera.snap()
         plt.tight_layout()                 
