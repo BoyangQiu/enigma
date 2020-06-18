@@ -4,6 +4,7 @@ The scope of the Capstone project is to visualize a pitcher's development over t
 pitcher will throw during a specific scenario.
 
 **Currently a work in progress. Estimated completion: June 28, 2020.**
+
 As such, many of the Notebooks are very messy and unordered.
 
 
