@@ -18,16 +18,20 @@ import matplotlib.lines as mlines
 cwd = os.getcwd()
 
 # Remove previous files to prevent pileup of files in folder
-folder = os.listdir('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/')
-for fname in folder:
+# List all files in folder
+files = os.listdir(cwd+ '/static/plots')
+# Set folder address
+folder = cwd+ '/static/plots'
+# Loop through file names, if any start with prefixes below, delete them
+for fname in files:
     if fname.startswith('script'):
-        os.remove(os.path.join('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/', fname))
+        os.remove(os.path.join(folder, fname))
     elif fname.startswith('plot'):
-        os.remove(os.path.join('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/', fname))
+        os.remove(os.path.join(folder, fname))
     elif fname.startswith('prog'):
-        os.remove(os.path.join('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/', fname))
+        os.remove(os.path.join(folder, fname))
     elif fname.startswith('static'):
-        os.remove(os.path.join('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/', fname))    
+        os.remove(os.path.join(folder, fname))    
 
 # Read in the dataframe to be used in the backend
 df = pd.read_csv('Master_df.csv',index_col = 0)
@@ -275,12 +279,14 @@ def progression(name, now):
     
     ax2.set_ylabel('WAR (Wins Above Replacement)', labelpad = 12, color = 'maroon')
     ax2.yaxis.set_tick_params(width=1.1, labelsize = 12)
+    # Set y limits, set max to 10 because no player has WAR over 10
+    # Use if statement so the axis can either start at 0, but if player has negative WAR seasons then it has to start at negative number
     if prog['WAR_x'].min() >= 0:
-        ax2.set_ylim(0, math.ceil(prog['WAR_x'].max()))
-        ax2.set_yticks(np.arange(0, math.ceil(prog['WAR_x'].max())+1, 1))
+        ax2.set_ylim(0, 10)
+        ax2.set_yticks(np.arange(0, 11, 2))
     else:
-        ax2.set_ylim(math.floor(prog['WAR_x'].min()), math.ceil(prog['WAR_x'].max()))
-        ax2.set_yticks(np.arange(math.floor(prog['WAR_x'].min()), math.ceil(prog['WAR_x'].max())+1, 1))
+        ax2.set_ylim(math.floor(prog['WAR_x'].min()), 10)
+        ax2.set_yticks(np.arange(math.floor(prog['WAR_x'].min()), 11, 2))
 
     ax2.tick_params(axis='y', colors='maroon')
     ax2.spines['top'].set_color('none')

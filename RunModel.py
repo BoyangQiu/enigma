@@ -6,14 +6,19 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.models import Model
 import os
 
-# Delete old plots from previous sessions to prevent pileup
-folder = os.listdir('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/')
-for fname in folder:
-    if fname.startswith('prob_'):
-        os.remove(os.path.join('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/', fname))
 
 # Get current directory
 cwd = os.getcwd()
+
+# Remove previous files to prevent pileup of files in folder
+# List all files in folder
+files = os.listdir(cwd+ '/static/plots')
+# Set folder address
+folder = cwd+ '/static/plots'
+# Loop through file names, if any start with prefixes below, delete them
+for fname in files:
+    if fname.startswith('prob_'):
+            os.remove(os.path.join(folder, fname))
 
 # Function for returning the pitch scenario
 def scenario(user_input):
