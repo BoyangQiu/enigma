@@ -9,7 +9,9 @@ As such, many of the Notebooks are very messy and unordered.
 
 
 Unique requirements:
+
 `Celluloid`
+
 Can be installed via `pip install celluloid`
 
 Other requirements:
