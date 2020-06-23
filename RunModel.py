@@ -12,6 +12,8 @@ for fname in folder:
     if fname.startswith('prob_'):
         os.remove(os.path.join('C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/', fname))
 
+# Get current directory
+cwd = os.getcwd()
 
 # Function for returning the pitch scenario
 def scenario(user_input):
@@ -124,39 +126,42 @@ def run_model(name, user_input, now):
     # Convert the array of integers into the pitch names using nested np.where functions
     # For 2 pitch pitchers
     if len(xnames) == 2:
-        pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
-                                np.where(pred_pitch == 1, xnames.values[1], pred_pitch))
-        # For 3 pitch pitchers:
-        elif len(xnames) == 3: 
-        pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
-                                np.where(pred_pitch == 1, xnames.values[1], 
-                                        np.where(pred_pitch == 2, xnames.values[2], pred_pitch)))
-        # For 4 pitch pitchers:  
-        elif len(xnames) == 4:
-        pred_pitch = np.where(pred_pitch == 0, xnames.values[0], 
-                                np.where(pred_pitch == 1, xnames.values[1], 
-                                        np.where(pred_pitch == 2, xnames.values[2], 
-                                                np.where(pred_pitch == 3, xnames.values[3], pred_pitch))))
+        pred_pitch = np.where(pred_pitch == 0, xnames[0], 
+                                np.where(pred_pitch == 1, xnames[1], pred_pitch))
+    # For 3 pitch pitchers:
+    elif len(xnames) == 3: 
+        pred_pitch = np.where(pred_pitch == 0, xnames[0], 
+                                np.where(pred_pitch == 1, xnames[1], 
+                                        np.where(pred_pitch == 2, xnames[2], pred_pitch)))
+    # For 4 pitch pitchers:  
+    elif len(xnames) == 4:
+        pred_pitch = np.where(pred_pitch == 0, xnames[0], 
+                                np.where(pred_pitch == 1, xnames[1], 
+                                        np.where(pred_pitch == 2, xnames[2], 
+                                                np.where(pred_pitch == 3, xnames[3], pred_pitch))))
                                  
     # Pred proba returns an array of lists, need to get just the first list of values
     # Set a color list of all light grey which is same length as number of bars
-    colors = np.array(['#f0f0f0']*len(pred_proba[0]))
-    # Modify the color at the index where the bar height is at the max to dark blue to stand out
-    colors[pred_proba[0] == pred_proba[0].max()] = '#0f52ba'
+    colors = np.array(['#686868']*len(pred_proba[0]))
+    # Modify the color at the index where the bar height is at the max to blue to stand out
+    colors[pred_proba[0] == pred_proba[0].max()] = 'skyblue'
     
     # Do the same for the edgecolors to further highlight top probability
-    edgecolors = np.array(['#f0f0f0']*len(pred_proba[0]))
-    edgecolors[pred_proba[0] == pred_proba[0].max()] = '#ea3c53'
+    edgecolors = np.array(['#686868']*len(pred_proba[0]))
+    edgecolors[pred_proba[0] == pred_proba[0].max()] = 'blue'
     
     fig, ax = plt.subplots()
-    
+    # Set background color
+    fig.patch.set_facecolor('#8a8a8a')
+    # Set face color
+    ax.set_facecolor('#8a8a8a')
     ax.bar(indices, pred_proba[0], width, edgecolor = edgecolors, linewidth='1.3', color = colors)
     
     # Add padding to improve spacing between axis, axis labels, and axis title   
     ax.set_ylabel('Predicted Probability', labelpad = 5)
     ax.set_xlabel('Pitch Type', labelpad=10)
     ax.tick_params(axis='x', which='major', pad=5)
-        
+    # Label the xticks with the respective pitch names
     plt.xticks(indices, xnames)
     
     # Remove some of spines for aesthetics
@@ -164,8 +169,11 @@ def run_model(name, user_input, now):
     ax.spines['right'].set_color('none')
     ax.spines['bottom'].set_bounds(indices.min()-width/2, indices.max()+width/2)
     ax.spines['left'].set_bounds(0, pred_proba[0].max())
+    # Save in relative path
     # Save it to a unique timestamp
-    plt.savefig(f'C:/Users/Boyang Qiu/Desktop/Brainstation/Capstone/static/plots/prob_{now}.png')
+    filename = cwd + f'/static/plots/prob_{now}.png'
+    # Saved with a dynamic file name because Flask has bad habit of caching objects in the Static folder, meaning they don't update if overwritten
+    plt.savefig(filename, facecolor=fig.get_facecolor())
     # Return a sentence summary with the probability rounded to 2 decimal places
-    prediction = 'Predicted Pitch: ' + pred_pitch[0] + " ({:.2g}% predicted probability)".format(np.amax(pred_proba)*100)
+    prediction = pred_pitch[0] + ' ({:.2g}%'.format(np.amax(pred_proba)*100) + ' confidence)'
     return prediction

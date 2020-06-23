@@ -3,7 +3,7 @@
     <style>
     .btnStack {
     font-family: Roboto, Arial, sans-serif;
-    background-color: #cc7a00;
+    background-color: #25355A;
     color: white;
     text-decoration: none;
     display: inline-block;
@@ -24,6 +24,9 @@
     -o-user-select: none;
     user-select: none;
     }
+    a.btnStack:hover {
+      background-color: #007FA3;
+    }
     .center {
     display: block;
     margin-left: auto;
@@ -31,30 +34,48 @@
     width: 50%;
     }
     .left {
-    display: block;
+    display: inline-block;
     margin-left: 0;
-    margin-right: auto;
-    width: 50%;
+    margin-right: 0px;
+    width: 30%;
     }
-  }
-    </style>
+    .right {
+    display: inline-block;
+    width: 30%;
+    }
+    </style>      
 
-        
-
-    <body>
-        <div style = 'text-align: top left;'>
-            <a href="//localhost:5000/" class="btnStack">Back to Home</a>
+<body style = "background-color: #8a8a8a;">
+    <div style = 'text-align: center; padding-top: 20px;'>
+        <a href="//localhost:5000/" class="btnStack">Back to Home</a>
+    </div>
+    <h1 style="text-align:center; font-family: Roboto, Arial, sans-serif; margin-bottom: 3px;">{{ playername }}</h1>
+    <hr style="border: 2px solid white; margin-top: 0px; width: 25%; align-items: center;" />
+    <p style="text-align:center; font-size: 18px; font-family: Roboto, Arial, sans-serif;">{{ situation }}</p>
+    <h3 style="text-align:center; font-family: Roboto, Arial, sans-serif; font-size: 22px;">  
+        Predicted Pitch: <span style = "color: #25355A;">{{ pred }}</span>
+        <div style = "text-align: center;">
+            <img src = "static/plots/{{ proba_plot }}">
         </div>
-        <h1 style="text-align:center">{{ playername }}</h1>
-        <h2 style="text-align:center">{{ years }}</h1>
-        {% if static == True %}
-            <div class = "left">
-                <img src = "static/plots/{{ file }}">
-            </div>
-        {% else %}
-            <div class = "center">
-                <img src = "static/plots/{{ file }}">
-            </div>
-        {% endif %}  
-    </body>
+    </h3>  
+    <!-- Add empty line and reset formatting-->
+    <br style="clear:both" />
+    <br>
+ 
+    <hr style="border: 2px dashed black; width: 65%; align-items: center;" /></hr>
+    <!-- Add empty line and reset formatting-->
+    <br style="clear:both" />
+
+    <h1 style="text-align:center; font-family: Roboto, Arial, sans-serif; margin-bottom: 0;">Pitch<span style="color: #007FA3; -webkit-text-stroke: 1px black;">HUB</mark></h1>
+
+    <hr style="border: 2px solid white; margin-top: 1; width: 10%; align-items: center;" /></hr>
+    <h3 style = "text-align: center; font-family: Roboto, Arial, sans-serif;">{{ playername }} {{ years }}</h3>
+    <div class = "left"><img src = "static/plots/{{ file }}"></div><div class = "left"><img src = "static/plots/{{ staticradar }}"></div> <div class = "right"><img src = "static/plots/{{ progfile }}"></div>
+
+    <!-- Add empty lines and reset formatting-->
+    <br style="clear:both" />
+    <br>
+
+    <div style = "display: inline-block; width: 50%;"><img src = "static/staticplots/{{ pitchfile }}"></div><div style = "display: inline-block; width: 50%;"><img src = "static/staticplots/{{ usagefile }}"></div>
+</body>
 </html>

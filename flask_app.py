@@ -21,7 +21,7 @@ def about():
     return render_template('about.html')
 
 # Create the response page after submission
-@app.route('/send', methods = ['GET', 'POST'])
+@app.route('/send', methods = ['POST'])
 def send():
     # If something is sent via the submit button
     if request.method == 'POST':
@@ -37,7 +37,7 @@ def send():
         # Turn it lower case to match the file name
         lastname = name.split()[1].lower()
         # Get the usage file name for everybody
-        usagefile = name + '_usage.png'
+        usagefile = name + '_usage_light.png'
         
         # Conditionals to fill in based on the user input
         strikes = int(request.form.get('strikes'))
@@ -139,9 +139,8 @@ def send():
         # If the player name does exist
         if isin == True:
             
-            # Create the name of the plot to be made
-            filename = 'script' + now + '.gif'
-            pitchfile = lastname +'_pitches.png'
+            
+            pitchfile = name +'_pitches.png'
             # Run the model with the name of player, user-input dataframe and current timestamp
             pred = rm.run_model(name, df, now)
             # Run the scenario sentence generator with the user-input dataframe
@@ -150,11 +149,21 @@ def send():
             
             # Call the custome prime.py script to calculate a player's prime years
             prime_years = prime.prime(name)
+            # Run the create dynamic radar plot function
             Animation.dynamic(name, now)
+            # Create the name of the animated plot to be made
+            filename = 'script' + now + '.gif'
+            # Run the static radar plot of average career attributes
+            Animation.static(name, now)
+            # Plot file name
+            staticradar = 'static' + now + '.png'
+            # Run the create plot of career attributes over age function
+            Animation.progression(name, now)
+            prog_name = 'prog' + now + '.png'
             return render_template('send.html', playername = name, file = filename, pitchfile = pitchfile, usagefile = usagefile, proba_plot = proba_plot, pred = pred, 
-            situation = scenario)
+            situation = scenario, years = prime_years, progfile = prog_name, staticradar = staticradar)
 
-
+        # If the player name does not exist in the database then send them to an error page
         else:
             return render_template('error.html')
 
