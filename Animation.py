@@ -43,6 +43,18 @@ def isin(name):
     else:
         return True
 
+
+'''
+The code below is a copy of what was in the Jupyter Notebook titled '5. Dynamic Plots.ipynb'
+
+The main difference is it was made into a function in order to be scalable based on user input.
+
+For details on the code and process, please view the respective Jupyter Notebook file. 
+
+While still documented, the code here may be missing comments explaining certain sections.
+'''
+
+
 # Define the function to create the radar plot
 # Base code from: https://matplotlib.org/examples/api/radar_chart.html
 # Modifications to make it a polygonal spine from: 
@@ -137,8 +149,6 @@ def dynamic(name, now):
     kershaw.reset_index(drop = True, inplace = True)
     # Pull only the columns to be used for the plot
     plotdf1 = kershaw[['Name', 'Strikeouts','Velocity','Pitch Diversity', 'Control', 'Stamina','Ground Balls',  'WAR', 'Age']]
-    plotdf1.sort_values(by=['Age'], inplace = True)
-    plotdf1.reset_index(drop=True, inplace=True)
 
     # Set N = 6 for 6 vertices (ie. a hexagon)
     N = 6

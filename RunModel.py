@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.models import Model
 import os
 
-
 # Get current directory
 cwd = os.getcwd()
 
@@ -20,8 +19,21 @@ for fname in files:
     if fname.startswith('prob_'):
             os.remove(os.path.join(folder, fname))
 
-# Function for returning the pitch scenario
+'''
+The code below is a copy of what was in the Jupyter Notebooks titled '8. Model Running.ipynb'
+
+The main difference is it was made into a function in order to be scalable based on user input.
+
+For details on the code and process, please view the respective Jupyter Notebook file. 
+
+While still documented, the code here may be missing comments explaining certain sections.
+'''
+
+# Function for returning the pitch scenario based on the user input from the Flask app
 def scenario(user_input):
+    '''
+    This function will return an one-sentence summary in baseball-English of the ingame scenario the user inputs.
+    '''
     situation = 'Pitch scenario: '
 
     # If clause for baserunners
@@ -102,9 +114,16 @@ def scenario(user_input):
     return situation
 
 # Function for running the model based on user input
+# Will return the most likely class (ie. pitch)
 def run_model(name, user_input, now):
+    ''' 
+    This function will take in the user inputted data frame and feed it to the model corresponding to the player of interest.
+    It will also take in the current timestamp to save the generated plot under a unique file name in the ../static/plots/ folder.
+    This model will return the most likely class (ie. pitch), as well as a full probability plot.
+    '''
+
     # Get the last name from the full name in lower case
-    lastname = name.split()[1].lower()
+    lastname = name.split()[1].lower() 
 
     # Load the correct model
     model = tf.keras.models.load_model(f'saved_model/{lastname}')
