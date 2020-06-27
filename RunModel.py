@@ -131,7 +131,6 @@ def run_model(name, user_input, now):
     pred_proba = model.predict(user_input)
     # Pull the max probability as the predicted pitch
     pred_pitch = np.argmax(pred_proba,axis=1)
-
     
     # Read in the possible pitch names
     df = pd.read_csv('pitch_names.csv', index_col = 0)

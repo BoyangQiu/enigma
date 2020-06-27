@@ -134,11 +134,8 @@ def send():
         if r3 == 'third':
             df['on_3b'] = 1
 
-
-
         # If the player name does exist
         if isin == True:
-            
             
             pitchfile = name +'_pitches.png'
             # Run the model with the name of player, user-input dataframe and current timestamp
@@ -166,7 +163,6 @@ def send():
         # If the player name does not exist in the database then send them to an error page
         else:
             return render_template('error.html')
-
 
 # Run the script when it is ran on its own
 if __name__ == "__main__":

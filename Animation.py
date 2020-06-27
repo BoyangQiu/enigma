@@ -43,7 +43,6 @@ def isin(name):
     else:
         return True
 
-
 '''
 The code below is a copy of what was in the Jupyter Notebook titled '5. Dynamic Plots.ipynb'
 
@@ -53,7 +52,6 @@ For details on the code and process, please view the respective Jupyter Notebook
 
 While still documented, the code here may be missing comments explaining certain sections.
 '''
-
 
 # Define the function to create the radar plot
 # Base code from: https://matplotlib.org/examples/api/radar_chart.html
