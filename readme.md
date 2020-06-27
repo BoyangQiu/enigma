@@ -1,12 +1,8 @@
 Repository for my Brainstation spring 2020 Capstone project.
 
-The scope of the Capstone project is to visualize a pitcher's development over the course of their career and to predict what pitch a 
-pitcher will throw during a specific scenario.
+The scope of the Capstone project is to predict what pitch a pitcher will throw during a specific scenario. It is complete with data visualizations which provide a scouting report of their pitching attributes, performance over time, frequent pitch locations and a breakdown of the proportional usage of their pitch arsenal.
 
 **Finalized files, working on completing the readme.md. Estimated completion: June 28, 2020.**
-
-As such, many of the Notebooks are very messy and unordered.
-
 
 Unique requirements:
 
@@ -29,7 +25,9 @@ If running from local machine, please ensure all files in the following folders 
 - **static**
 - **saved_model**
 
-Files in the `Notebooks` folder are not necessary for the application to run.
+The `Notebooks` folder is a compilation of my end-to-end workflow for this project. It includes detailed documentation of the code as well as my thought process throughout. It is intended to answer any outstanding questions about the project, code or project flow.
+
+The Files in the `Notebooks` folder are not necessary for the application to run.
 
 
 Once the files and folders have been downloaded and set up, you may run the `flask_app.py` script.
