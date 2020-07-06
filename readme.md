@@ -28,6 +28,6 @@ The `Notebooks` folder is a compilation of my end-to-end workflow for this proje
 The Files in the `Notebooks` folder are not necessary for the application to run.
 
 
-Once the files and folders have been downloaded and set up, you may run the `flask_app.py` script.
+Once the files and folders have been downloaded and set up, you may run the `enigma.py` script.
 
 It will render a web page on **localhost:5000** where the web application is hosted.
