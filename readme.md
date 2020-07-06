@@ -1,3 +1,5 @@
+<img src = "https://puu.sh/G4cPn/3cf1822825.png">
+
 Repository for my Brainstation spring 2020 Capstone project.
 
 The scope of the Capstone project is to predict what pitch a pitcher will throw during a specific scenario. It is complete with data visualizations which provide a scouting report of their pitching attributes, performance over time, frequent pitch locations and a breakdown of the proportional usage of their pitch arsenal.
