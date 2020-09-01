@@ -15,6 +15,7 @@ Other requirements:
 - `Flask`
 - `TensorFlow 2.x`
 - `matplotlib`
+- `scikit-learn`
 - `pandas`
 - `numpy `
 
