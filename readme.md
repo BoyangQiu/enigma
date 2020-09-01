@@ -13,7 +13,7 @@ Can be installed via `pip install celluloid`
 Other requirements:
 
 - `Flask`
-- `TensorFlow 2.0`
+- `TensorFlow 2.x`
 - `matplotlib`
 - `pandas`
 - `numpy `
