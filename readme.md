@@ -26,9 +26,9 @@ Main folder
 
 |___ static
 
-	|___ plots
+   |___ plots
 	
-	|___ staticplots
+   |___ staticplots
 	
 |
 
