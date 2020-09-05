@@ -19,8 +19,14 @@ Other requirements:
 - `pandas`
 - `numpy `
 
-<Folder Structure>
+
+
   
+*** 
+ 
+
+If running from local machine, please ensure all files in the following folders are downloaded and the folder structure is the same as here:
+
 ```
   
 Main folder	
@@ -34,16 +40,6 @@ Main folder
 |___ templates
 
 ```
-  
-*** 
- 
-
-If running from local machine, please ensure all files in the following folders are downloaded and the folder structure is the same as here:
-
-- **main folder**
-- **templates**
-- **static**
-- **saved_model**
 
 The `Notebooks` folder is a compilation of my end-to-end workflow for this project. It includes detailed documentation of the code as well as my thought process throughout. It is intended to answer any outstanding questions about the project, code or project flow.
 
