@@ -20,7 +20,9 @@ Other requirements:
 - `numpy `
 
 <Folder Structure>
+  
 ```
+  
 Main folder	
 |
 |___ static
@@ -30,6 +32,7 @@ Main folder
 |___ saved_model (containing folders for each player's model)
 |
 |___ templates
+
 ```
   
 *** 
