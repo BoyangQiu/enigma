@@ -20,24 +20,17 @@ Other requirements:
 - `numpy `
 
 <Folder Structure>
-Main folder
-	
+```
+Main folder	
 |
-
 |___ static
-
-   |___ plots
-	
-   |___ staticplots
-	
+|	|___ plots
+|	|___ staticplots
 |
-
 |___ saved_model (containing folders for each player's model)
-
 |
-
 |___ templates
-
+```
   
 *** 
  
