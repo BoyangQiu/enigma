@@ -19,6 +19,20 @@ Other requirements:
 - `pandas`
 - `numpy `
 
+<Folder Structure>
+Main folder
+|
+|___ static
+	|___ plots
+	|___ staticplots
+|
+|___ saved_model (containing folders for each player's model)
+|
+|___ templates
+  
+*** 
+ 
+
 If running from local machine, please ensure all files in the following folders are downloaded and the folder structure is the same as here:
 
 - **main folder**
